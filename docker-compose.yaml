@@ -1,0 +1,25 @@
+services:
+  backend:
+    build: node_backend/.
+    ports:
+    - "3000:3000"
+    volumes:
+    - frontend_volume:/app/frontend
+    networks:
+      - my_network
+
+  frontend:
+    build: web_frontend/.
+    ports:
+    - "9091:80"
+    volumes:
+    - frontend_volume:/app/frontend
+    networks:
+      - my_network
+
+volumes:
+  frontend_volume
+
+networks:
+  my_network:
+    driver: bridge
